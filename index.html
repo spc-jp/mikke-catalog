@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>みっけシリーズ｜Smile Plus Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #223670;
+    --navy-dark: #182550;
+    --navy-light: #2d4490;
+    --gold: #D0A900;
+    --gold-light: #f0c800;
+    --white: #ffffff;
+    --bg: #f5f6fa;
+    --text: #222;
+    --text-light: #666;
+    --card-shadow: 0 2px 16px rgba(34,54,112,0.10);
+    --radius: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 64px 20px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(208,169,0,0.12);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -30px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(208,169,0,0.08);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(22px, 5vw, 36px);
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: clamp(13px, 2.5vw, 16px);
+    opacity: 0.85;
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    text-align: center;
+  }
+  .hero-stat .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-stat .label {
+    font-size: 11px;
+    opacity: 0.7;
+  }
+
+  /* ===== PROFILE STRIP ===== */
+  .profile-strip {
+    background: var(--white);
+    border-bottom: 3px solid var(--gold);
+    padding: 20px;
+    text-align: center;
+  }
+  .profile-strip p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .profile-strip strong { color: var(--navy); }
+
+  /* ===== HOW TO USE ===== */
+  .howto {
+    background: var(--navy);
+    color: var(--white);
+    padding: 36px 20px;
+    text-align: center;
+  }
+  .howto h2 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+  }
+  .howto-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .howto-step {
+    text-align: center;
+    padding: 0 16px;
+    flex: 1;
+    min-width: 140px;
+  }
+  .howto-step .icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .howto-step .step-label {
+    font-size: 10px;
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  .howto-step p {
+    font-size: 12px;
+    opacity: 0.85;
+    line-height: 1.6;
+  }
+  .howto-arrow {
+    color: var(--gold);
+    font-size: 20px;
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+
+  /* ===== CATALOG SECTION ===== */
+  .catalog {
+    padding: 40px 16px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .catalog-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .catalog-header h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(18px, 4vw, 26px);
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .catalog-header p {
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  /* SEARCH */
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 40px;
+    padding: 10px 20px;
+    max-width: 460px;
+    margin: 0 auto 24px;
+    gap: 10px;
+  }
+  .search-box input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    flex: 1;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    background: transparent;
+  }
+  .search-box .search-icon { color: var(--navy); font-size: 16px; }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .tab-btn {
+    padding: 8px 18px;
+    border-radius: 24px;
+    border: 2px solid var(--navy);
+    background: var(--white);
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { background: var(--navy); color: var(--white); }
+  .tab-btn.active { background: var(--navy); color: var(--white); }
+
+  /* COUNT */
+  .count-bar {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+  }
+  .count-bar span { color: var(--navy); font-weight: 700; }
+
+  /* GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    border-top: 3px solid transparent;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(34,54,112,0.16);
+    border-top-color: var(--gold);
+  }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .card-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.4;
+    flex: 1;
+  }
+  .badge-new {
+    background: #e8f4ff;
+    color: #0070cc;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-cat {
+    display: inline-block;
+    font-size: 10px;
+    color: var(--text-light);
+    background: var(--bg);
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  .card-desc {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+  .card-price {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .card-price strong { color: var(--navy); font-size: 14px; }
+  .card-btn {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .card-btn:hover { background: var(--gold); color: var(--navy-dark); }
+
+  /* NO RESULTS */
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-light);
+    font-size: 14px;
+    display: none;
+    grid-column: 1 / -1;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy-dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 12px;
+    line-height: 2;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer strong { color: var(--white); }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 768px) {
+    .howto-arrow { display: none; }
+    .howto-steps { gap: 16px; }
+    .howto-step { min-width: 120px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .search-box { margin: 0 0 20px; }
+    .tabs { gap: 6px; }
+    .tab-btn { font-size: 11px; padding: 7px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✦ Smile Plus Consulting</div>
+  <h1>あなたのビジネスに合う<br><span>AIツール</span>が、きっとあります</h1>
+  <p>「考えるを、ひとりにしない」<br>中小企業の現場で生まれた、すぐ使えるAIアプリ集</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="num">60<small style="font-size:16px">+</small></span>
+      <span class="label">アプリ数</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">20<small style="font-size:16px">年</small></span>
+      <span class="label">中小企業支援の経験</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">3<small style="font-size:16px">回</small></span>
+      <span class="label">無料でお試し可能</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<div class="profile-strip">
+  <p>
+    <strong>YoshiBon（松本 由也）</strong>｜フリーランスWebマーケター・AIアプリ開発者<br>
+    税理士・製造業・飲食・美容など中小企業の現場に寄り添って20年以上。<br>
+    経営者の「困った」を、AIの力でかんたんに解決するツールを作り続けています。
+  </p>
+</div>
+
+<!-- HOW TO USE -->
+<section class="howto">
+  <h2>▷ ご利用の流れ</h2>
+  <div class="howto-steps">
+    <div class="howto-step">
+      <span class="icon">🔍</span>
+      <span class="step-label">STEP 1</span>
+      <p>使いたいアプリを選ぶ</p>
+    </div>
+    <div class="howto-arrow">›</div>
+    <div class="howto-step">
+      <span class="icon">✨</span>
+      <span class="step-label">STEP 2</span>
+      <p>無料で3回お試し</p>
+    </div>
+    <div class="howto-arrow">›</div>
+    <div class="howto-step">
+      <span class="icon">💳</span>
+      <span class="step-label">STEP 3</span>
+      <p>気に入ったら月額プランへ</p>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section class="catalog">
+  <div class="catalog-header">
+    <h2>みっけシリーズ 全作品一覧</h2>
+    <p>カテゴリで絞り込み、キーワードで検索できます</p>
+  </div>
+
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="アプリ名・キーワードで検索…">
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-cat="all">すべて</button>
+    <button class="tab-btn" data-cat="tax">💰 税務・お金</button>
+    <button class="tab-btn" data-cat="biz">🏢 経営・戦略</button>
+    <button class="tab-btn" data-cat="sns">📱 SNS・集客</button>
+    <button class="tab-btn" data-cat="legal">⚖️ 士業・法務</button>
+    <button class="tab-btn" data-cat="hr">👥 採用・HR</button>
+    <button class="tab-btn" data-cat="industry">🏪 業種特化</button>
+    <button class="tab-btn" data-cat="life">🌿 ツール・生活</button>
+  </div>
+
+  <div class="count-bar">
+    <span id="countNum">0</span> 件表示中
+  </div>
+
+  <div class="cards-grid" id="cardsGrid">
+    <div class="no-results" id="noResults">該当するアプリが見つかりませんでした 🔍</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Smile Plus Consulting</strong><br>
+  「中小企業の宝探し」考えるを、ひとりにしない<br>
+  <a href="#">Instagram</a>　<a href="#">note</a>　<a href="#">お問い合わせ</a><br>
+  &copy; Smile Plus Consulting All Rights Reserved.
+</footer>
+
+<script>
+const apps = [
+  // 💰 税務・お金
+  { name: "売上みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "数字を入れるだけで売上シミュレーション。税理士との面談準備に最適。", price: "¥980/月〜", isNew: true, link: "#" },
+  { name: "節税ダッシュボード", cat: "tax", catLabel: "💰 税務・お金", desc: "節税ポイントをAIが自動でチェック。経営者の手元に残るお金を増やす。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "収入みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "配偶者の扶養・収入の壁を簡単シミュレーション。103万・130万の判断に。", price: "¥980/月〜", isNew: true, link: "#" },
+  { name: "資金繰りシミュレーター", cat: "tax", catLabel: "💰 税務・お金", desc: "月次の資金繰りをAIがシミュレーション。黒字倒産を防ぐための可視化ツール。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "試算みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "試算表のデータをもとにAIが経営状態を診断。事務所の顧問先向け。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "申告みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "確定申告・法人税申告の準備をAIがサポート。抜け漏れをチェック。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "節税みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "業種・状況に合った節税アドバイスをAIが提案。わかりやすく解説。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "お金みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "中小企業の経営者向けお金の基礎知識をAIが解説。今すぐ使える知恵袋。", price: "無料〜", isNew: false, link: "#" },
+  { name: "お金みっけPro", cat: "tax", catLabel: "💰 税務・お金", desc: "お金みっけの上位版。詳細な財務分析とアドバイスに対応。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "FP提案書自動生成ツール", cat: "tax", catLabel: "💰 税務・お金", desc: "FP・保険営業向け。顧客情報を入力するだけでAIが提案書を自動生成。", price: "¥4,980/月〜", isNew: false, link: "#" },
+
+  // 🏢 経営・戦略
+  { name: "社長の相棒", cat: "biz", catLabel: "🏢 経営・戦略", desc: "ひとり社長の右腕AIアドバイザー。経営の悩みをいつでも相談できる。", price: "¥980/月〜", isNew: true, link: "#" },
+  { name: "ひとり社長の経営会議室", cat: "biz", catLabel: "🏢 経営・戦略", desc: "複数のAIアドバイザーが議論して経営課題を多角的に分析。ひとり社長の壁打ち相手。", price: "¥1,980/月〜", isNew: true, link: "#" },
+  { name: "ひとり社長の参謀室", cat: "biz", catLabel: "🏢 経営・戦略", desc: "経営戦略・マーケティング・人事をAIが参謀として支援。経営の全体設計に。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "経営健康診断アプリ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "いくつかの質問に答えるだけで会社の健康状態をAIが診断。改善ポイントも提示。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "補助金マッチングナビ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "業種・規模・状況から最適な補助金をAIがナビゲート。申請準備もサポート。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "潜在ニーズレーダー", cat: "biz", catLabel: "🏢 経営・戦略", desc: "顧客インタビューや声をAIが分析。まだ言語化されていないニーズを発掘。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "価値みっけ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "自社の強みや価値を引き出すAIヒアリングツール。ブランドの核心を言語化。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "信みっけ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "顧客からの信頼を高めるための実績・事例を整理。信頼ポイントを可視化。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "強みみっけ for OZ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "OZ向けカスタム版。会社の強みを引き出し、提案資料やコンテンツに変換。", price: "¥4,980/月〜", isNew: false, link: "#" },
+  { name: "SPC総合マナージャー", cat: "biz", catLabel: "🏢 経営・戦略", desc: "SPC内部ツール。複数のアプリ・プロジェクトを一元管理するダッシュボード。", price: "社内向け", isNew: false, link: "#" },
+  { name: "考える前に立ち止まれる場所", cat: "biz", catLabel: "🏢 経営・戦略", desc: "忙しい経営者が少し立ち止まり、本質を見直すための対話型AIツール。", price: "無料", isNew: false, link: "#" },
+
+  // 📱 SNS・集客
+  { name: "写みっけ", cat: "sns", catLabel: "📱 SNS・集客", desc: "写真をアップするだけでInstagram・X・LINE投稿文をAIが自動生成。", price: "¥980/月〜", isNew: true, link: "#" },
+  { name: "チラシみっけ", cat: "sns", catLabel: "📱 SNS・集客", desc: "チラシ・フライヤーの画像を読み取り、SNS投稿文に自動変換。", price: "¥980/月〜", isNew: true, link: "#" },
+  { name: "SNSはじめてみっけ", cat: "sns", catLabel: "📱 SNS・集客", desc: "SNS初心者向け。何を投稿すればいいか迷わないAIコンテンツ企画ツール。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "SNSマネージャー", cat: "sns", catLabel: "📱 SNS・集客", desc: "複数のSNS投稿を一括管理・生成。継続投稿を仕組みで実現。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "イメージみっけ", cat: "sns", catLabel: "📱 SNS・集客", desc: "ブランドイメージや世界観をAIが言語化。Midjourney等のプロンプトも生成。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "インフォみっけ", cat: "sns", catLabel: "📱 SNS・集客", desc: "インフォグラフィック用の構成・コピーをAIが設計。視覚的な情報整理に。", price: "¥980/月〜", isNew: true, link: "#" },
+  { name: "プロコピーメーカー", cat: "sns", catLabel: "📱 SNS・集客", desc: "プロ品質のキャッチコピー・LP文・セールストークをAIが量産。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "noteみっけ", cat: "sns", catLabel: "📱 SNS・集客", desc: "note.com向け記事をAIが自動生成。見出し・本文・ハッシュタグまで一括対応。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "Note Rewrite", cat: "sns", catLabel: "📱 SNS・集客", desc: "既存のnote記事をAIがリライト・改善。SEOとエンゲージメントを同時強化。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "言葉の処方箋", cat: "sns", catLabel: "📱 SNS・集客", desc: "伝わらない言葉をAIが「刺さる言葉」に変換。営業・マーケ・SNSに活用。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "ギュッと!ムービー", cat: "sns", catLabel: "📱 SNS・集客", desc: "長い動画や文章をAIが短く要約。リール・ショートムービーの台本に変換。", price: "¥980/月〜", isNew: false, link: "#" },
+
+  // ⚖️ 士業・法務
+  { name: "書面チェックくん", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "契約書・書面をAIがチェック。リスク箇所・確認ポイントをわかりやすく提示。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "法みっけ", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "契約リスクをAIが自動分析。弁護士・司法書士の業務効率化に。", price: "¥1,980/月〜", isNew: true, link: "#" },
+  { name: "匿名化くん", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "文書内の個人情報をAIが自動で匿名化。士業・法人の情報共有を安全に。", price: "¥1,980/月〜", isNew: true, link: "#" },
+  { name: "情報まもるくん", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "機密情報・個人情報の管理ルールをAIがチェック。情報漏洩リスクを低減。", price: "¥1,980/月〜", isNew: true, link: "#" },
+  { name: "秘書みっけ", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "スケジュール整理・メール対応・書類管理をAIがサポートする士業向け秘書ツール。", price: "¥1,980/月〜", isNew: false, link: "#" },
+
+  // 👥 採用・HR
+  { name: "採用みっけ", cat: "hr", catLabel: "👥 採用・HR", desc: "中小企業の採用コンテンツをAIが生成。求人票・会社説明文を魅力的に。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "採用みっけ（業種特化版）", cat: "hr", catLabel: "👥 採用・HR", desc: "業種別に最適化された採用コンテンツを生成。飲食・製造・介護など対応。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "採用分析アシスト", cat: "hr", catLabel: "👥 採用・HR", desc: "応募者データ・面接メモをAIが分析。採用精度を上げるためのアドバイスも。", price: "¥1,980/月〜", isNew: true, link: "#" },
+
+  // 🏪 業種特化
+  { name: "メニューみっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "飲食店メニューを写真・テキストから多言語に翻訳。インバウンド対応を簡単に。", price: "¥980/月〜", isNew: true, link: "#" },
+  { name: "物件みっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "物件情報をAIが診断・分析。不動産業者・オーナー向け物件価値アドバイス。", price: "¥1,980/月〜", isNew: true, link: "#" },
+  { name: "薬局SNSみっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "薬局向けSNS投稿をAIが自動生成。健康情報・季節ネタを継続発信。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "処方箋よみとりくん", cat: "industry", catLabel: "🏪 業種特化", desc: "処方箋の情報を読み取り、患者フォローアップ文を自動生成。薬局DX推進。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "リフォームみっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "リフォーム会社向けAIツール。顧客ヒアリングから提案内容をサポート。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "リフォーム見積くん", cat: "industry", catLabel: "🏪 業種特化", desc: "リフォームの概算見積をAIが自動計算。営業の初回提案をスピードアップ。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "リフォーム簡単見積", cat: "industry", catLabel: "🏪 業種特化", desc: "お客様が自分で入力できる簡単見積フォーム版。問い合わせ獲得に活用。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "リフォームLP", cat: "industry", catLabel: "🏪 業種特化", desc: "リフォーム会社向けランディングページ。AIが魅力的なコピーを自動生成。", price: "¥4,980/月〜", isNew: false, link: "#" },
+  { name: "艶みっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "美容業向け。サロンの魅力・施術の価値をAIが言語化。SNS・LPに活用。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "味みっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "飲食業向け。料理の魅力・こだわりをAIが文章化。メニュー表・SNSに展開。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "技みっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "製造・職人向け。技術・こだわりをAIが言語化。採用・営業資料に活用。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "技みっけ（Pro版）", cat: "industry", catLabel: "🏪 業種特化", desc: "技みっけの上位版。技術資料・特許文書・カタログへの展開もサポート。", price: "¥1,980/月〜", isNew: false, link: "#" },
+  { name: "巡回みっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "訪問介護・営業巡回の記録をAIが整理・要約。報告書作成時間を大幅短縮。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "Hikari Brand Note", cat: "industry", catLabel: "🏪 業種特化", desc: "光製薬向けカスタムツール。ブランドノートの生成・管理に特化。", price: "専用", isNew: false, link: "#" },
+
+  // 🌿 ツール・生活
+  { name: "文字みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "音声・動画の文字起こしをAIが要約・整理。会議・セミナー・インタビューに。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "よみとりくん", cat: "life", catLabel: "🌿 ツール・生活", desc: "画像・写真のテキストをAIが読み取り。名刺・書類・看板などに対応。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "会議みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "会議の音声・議事メモをAIが整理。アクションアイテムを自動で抽出。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "スマホWeb工房", cat: "life", catLabel: "🌿 ツール・生活", desc: "スマホだけで簡単なWebページを作れるAIツール。非エンジニア向け。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "冷蔵庫みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "冷蔵庫の中身を写真で撮るだけでレシピをAIが提案。食材ロス削減にも。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "Mirai365", cat: "life", catLabel: "🌿 ツール・生活", desc: "365日の目標・記録をAIがサポート。毎日の積み上げを可視化する習慣ツール。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "たびみっけ Global", cat: "life", catLabel: "🌿 ツール・生活", desc: "旅先の写真をアップするだけでその場所の歴史・文化・豆知識をAIが解説。", price: "¥980/月〜", isNew: true, link: "#" },
+  { name: "占いみっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "AIがあなたのSNS投稿にぴったりの占いコンテンツを提案。エンタメ系発信に。", price: "¥980/月〜", isNew: false, link: "#" },
+  { name: "ゴルフ1分コーチ", cat: "life", catLabel: "🌿 ツール・生活", desc: "ゴルフのスコア・悩みを入力するとAIが1分でコーチング。ラウンド前後に活用。", price: "¥980/月〜", isNew: false, link: "#" },
+];
+
+function renderCards(list) {
+  const grid = document.getElementById('cardsGrid');
+  const noResults = document.getElementById('noResults');
+  const countNum = document.getElementById('countNum');
+
+  // Remove old cards
+  [...grid.querySelectorAll('.card')].forEach(c => c.remove());
+
+  if (list.length === 0) {
+    noResults.style.display = 'block';
+    countNum.textContent = '0';
+    return;
+  }
+  noResults.style.display = 'none';
+  countNum.textContent = list.length;
+
+  list.forEach(app => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-name">${app.name}</div>
+        ${app.isNew ? '<span class="badge-new">NEW</span>' : ''}
+      </div>
+      <span class="badge-cat">${app.catLabel}</span>
+      <p class="card-desc">${app.desc}</p>
+      <div class="card-footer">
+        <div class="card-price">月額 <strong>${app.price}</strong></div>
+        <a href="${app.link}" class="card-btn" target="_blank" rel="noopener">無料で試す →</a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function getFiltered() {
+  const cat = document.querySelector('.tab-btn.active').dataset.cat;
+  const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+  return apps.filter(app => {
+    const matchCat = cat === 'all' || app.cat === cat;
+    const matchKey = !keyword || app.name.toLowerCase().includes(keyword) || app.desc.toLowerCase().includes(keyword);
+    return matchCat && matchKey;
+  });
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards(getFiltered());
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', () => {
+  renderCards(getFiltered());
+});
+
+// Initial render
+renderCards(apps);
+</script>
+</body>
+</html>
