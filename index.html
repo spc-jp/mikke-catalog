@@ -110,17 +110,24 @@
   .profile-strip {
     background: var(--white);
     border-bottom: 3px solid var(--gold);
-    padding: 20px;
+    padding: 20px 20px 30px;
     text-align: center;
   }
   .profile-strip p {
     font-size: 13px;
     color: var(--text-light);
     line-height: 1.8;
-    max-width: 600px;
+    max-width: 750px;
     margin: 0 auto;
   }
   .profile-strip strong { color: var(--navy); }
+  
+  .partner-msg {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed #ccc;
+    font-size: 13px;
+  }
 
   /* ===== HOW TO USE ===== */
   .howto {
@@ -391,7 +398,7 @@
       <span class="label">アプリ数</span>
     </div>
     <div class="hero-stat">
-      <span class="num">20<small style="font-size:16px">年</small></span>
+      <span class="num">30<small style="font-size:16px">年</small></span>
       <span class="label">中小企業支援の経験</span>
     </div>
     <div class="hero-stat">
@@ -404,10 +411,18 @@
 <!-- PROFILE -->
 <div class="profile-strip">
   <p>
-    <strong>YoshiBon（松本 由也）</strong>｜フリーランスWebマーケター・AIアプリ開発者<br>
-    税理士・製造業・飲食・美容など中小企業の現場に寄り添って20年以上。<br>
-    経営者の「困った」を、AIの力でかんたんに解決するツールを作り続けています。
+    <strong>SPC 松本 由也</strong>｜Webマーケター・AIアプリ開発者<br>
+    士業・コンサルタント・製造業・飲食・建設・不動産など中小企業の現場に寄り添って30年以上。<br>
+    “考えるを、ひとりにしない”伴走者として、経営者の「困った」をかんたんに解決するツールを作り続けています。
   </p>
+  <div class="partner-msg">
+    <p>
+      <strong>【パートナー様募集中】</strong><br>
+      専門家の方、業界に精通している方へ。<br>
+      あなたの周りに、これらのアプリで喜んでいただける経営者様はいらっしゃいませんか？<br>
+      パートナーとしての展開も歓迎しておりますので、ぜひお気軽にご連絡ください。
+    </p>
+  </div>
 </div>
 
 <!-- HOW TO USE -->
@@ -514,6 +529,7 @@ const apps = [
   { name: "採用みっけ", cat: "hr", catLabel: "👥 採用・HR", desc: "中小企業の採用コンテンツをAIが生成。求人票・会社説明文を魅力的に。", price: "¥1,980/月〜", isNew: false, link: "https://spc-jp.github.io/saiyou-mikke/" },
   { name: "採用みっけ（業種特化版）", cat: "hr", catLabel: "👥 採用・HR", desc: "業種別に最適化された採用コンテンツを生成。飲食・製造・介護など対応。", price: "¥2,980/月〜", isNew: false, link: "https://saiyou-mikke.pages.dev/" },
   { name: "採用分析アシスト", cat: "hr", catLabel: "👥 採用・HR", desc: "応募者データ・面接メモをAIが分析。採用精度を上げるためのアドバイスも。", price: "¥2,980/月〜", isNew: true, link: "https://saiyo-mendan.pages.dev/" },
+  { name: "Hitokoto 迷えるリーダーの処方箋", cat: "hr", catLabel: "👥 採用・HR", desc: "変えるのは「相手」じゃない。あなたが投げる「言葉」だ。叱りたいわけじゃない。ただ、チームで前に進みたいだけ。", price: "¥2,980/月〜", isNew: true, link: "https://hitokoto2-0-apl.pages.dev/" },
 
   // 🏪 業種特化
   { name: "メニューみっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "飲食店メニューを写真・テキストから多言語に翻訳。インバウンド対応を簡単に。", price: "¥1,980/月〜", isNew: true, link: "https://menu-mikke.pages.dev/" },
