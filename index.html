@@ -217,6 +217,64 @@
     flex-shrink: 0;
   }
 
+  /* ===== POPULAR SECTION ===== */
+  .popular-section {
+    padding: 56px 16px 0;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .popular-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .popular-header h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(18px, 4vw, 24px);
+    color: var(--navy);
+  }
+  .popular-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 10px; /* シャドウが切れないように */
+  }
+  .popular-card {
+    background: var(--white);
+    border: 2px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(208,169,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.2s;
+  }
+  .popular-card:hover {
+    transform: translateY(-5px);
+  }
+  .rank-badge {
+    position: absolute;
+    top: -16px;
+    left: -16px;
+    background: var(--navy);
+    color: var(--gold);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    border: 3px solid var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .popular-card .card-name { font-size: 16px; }
+  .popular-card .card-desc { font-size: 13px; }
+  .popular-card .card-btn { background: var(--gold); color: var(--navy-dark); }
+  .popular-card .card-btn:hover { background: var(--navy); color: var(--white); }
+
   /* ===== CATALOG SECTION ===== */
   .catalog {
     padding: 40px 16px 60px;
@@ -410,6 +468,7 @@
     .howto-arrow { display: none; }
     .howto-steps { gap: 16px; }
     .howto-step { min-width: 120px; }
+    .popular-grid { grid-template-columns: 1fr; gap: 32px; padding-top: 20px; }
     .cards-grid { grid-template-columns: 1fr; }
     .search-box { margin: 0 0 20px; }
     .tabs { gap: 6px; }
@@ -440,46 +499,14 @@
   </div>
 </section>
 
-<!-- PROFILE -->
-<div class="profile-strip">
-  <p>
-    <strong>SPC YoshiBon</strong>｜Webマーケター・AIアプリ開発者<br>
-    士業・コンサルタント・製造業・飲食・建設・不動産など中小企業の現場に寄り添って30年以上。<br>
-    “考えるを、ひとりにしない”伴走者として、経営者の「困った」をかんたんに解決するツールを作り続けています。
-  </p>
-  <div class="partner-msg">
-    <p>
-      <strong>【共創パートナー募集】</strong><br>
-      専門家の方・業界に精通されている方へ。<br>
-      経営者様のお悩み解決に、これらのアプリをお役立ていただける場面があるかもしれません。<br>
-      ご一緒に価値を届けていけるパートナー様との出会いを大切にしています。<br>
-      ご興味があれば、お気軽にご連絡ください
-    </p>
-    <a href="https://spc-jp.github.io/mikke-catalog-contact/" target="_blank" rel="noopener" class="contact-btn-profile">お問い合わせはこちら</a>
+<!-- POPULAR APPS -->
+<section class="popular-section">
+  <div class="popular-header">
+    <h2>👑 人気のAIアプリ Top3</h2>
+    <p style="font-size: 13px; color: var(--text-light); margin-top: 8px;">まずはこれから！多くの経営者様に選ばれているアプリです</p>
   </div>
-</div>
-
-<!-- HOW TO USE -->
-<section class="howto">
-  <h2>▷ ご利用の流れ</h2>
-  <div class="howto-steps">
-    <div class="howto-step">
-      <span class="icon">🔍</span>
-      <span class="step-label">STEP 1</span>
-      <p>使いたいアプリを選ぶ</p>
-    </div>
-    <div class="howto-arrow">›</div>
-    <div class="howto-step">
-      <span class="icon">✨</span>
-      <span class="step-label">STEP 2</span>
-      <p>無料で3回お試し</p>
-    </div>
-    <div class="howto-arrow">›</div>
-    <div class="howto-step">
-      <span class="icon">💳</span>
-      <span class="step-label">STEP 3</span>
-      <p>気に入ったら月額プランへ</p>
-    </div>
+  <div class="popular-grid" id="popularGrid">
+    <!-- JSで自動生成されます -->
   </div>
 </section>
 
@@ -497,10 +524,10 @@
 
   <div class="tabs">
     <button class="tab-btn active" data-cat="all">すべて</button>
-    <button class="tab-btn" data-cat="tax">💰 税務・お金</button>
     <button class="tab-btn" data-cat="biz">🏢 経営・戦略</button>
     <button class="tab-btn" data-cat="sns">📱 SNS・集客</button>
     <button class="tab-btn" data-cat="legal">⚖️ 士業・法務</button>
+    <button class="tab-btn" data-cat="tax">💰 税務・お金</button>
     <button class="tab-btn" data-cat="hr">👥 採用・HR</button>
     <button class="tab-btn" data-cat="industry">🏪 業種特化</button>
     <button class="tab-btn" data-cat="life">🌿 ツール・生活</button>
@@ -525,16 +552,6 @@
 
 <script>
 const apps = [
-  // 💰 税務・お金
-  { name: "売上みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「毎月の売上予測を立てるのが面倒」という経営者へ。入力は最小限。直感的に着地が見えるシミュレーションツール。", price: "¥2,980/月〜", isNew: true, link: "https://uriage-mikke.pages.dev/" },
-  { name: "節税ダッシュボード", cat: "tax", catLabel: "💰 税務・お金", desc: "「税金、もっと安くならないの？」という経営者へ。AIが節税ポイントを自動チェックし、手元に残るお金を最大化します。", price: "¥1,980/月〜", isNew: false, link: "https://spc-jp.github.io/setsuzei-board/" },
-  { name: "収入みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「今年のパート収入、壁を超えちゃう？」という不安に。数字を入れるだけで103万・130万の壁を簡単シミュレーション。", price: "¥980/月〜", isNew: true, link: "https://spc-jp.github.io/syunyu-mikke/" },
-  { name: "資金繰りシミュレーター", cat: "tax", catLabel: "💰 税務・お金", desc: "「月末の支払いは足りるか？」という不安を解消。AIが月次の資金繰りをシミュレーションし、黒字倒産を未然に防ぎます。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/shikin-simulator/" },
-  { name: "試算みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「試算表の数字が読めない」という経営者へ。データを入力するだけでAIが経営状態を分かりやすく診断・解説します。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/shisan-mikke/" },
-  { name: "申告みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「申告準備、何から手をつければ…」という方へ。AIが確定申告・法人税申告の準備をサポートし、抜け漏れを防止します。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/shinkoku-mikke/" },
-  { name: "節税みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「自社に合った節税策が分からない」という経営者へ。業種や状況に応じた具体的な節税アドバイスをAIが提案します。", price: "¥2,980/月〜", isNew: false, link: "https://setsuzei-mikke.pages.dev/" },
-  { name: "お金みっけPro", cat: "tax", catLabel: "💰 税務・お金", desc: "「自社の財務状況をプロ目線で分析してほしい」という経営者へ。詳細な財務分析と具体的な改善アドバイスを提供します。", price: "¥2,980/月〜", isNew: false, link: "https://okane-mikke-pro.pages.dev/" },
-
   // 🏢 経営・戦略
   { name: "社長の相棒", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「誰に相談すればいいか分からない…」というひとり社長へ。24時間いつでも相談できる、あなたの右腕となるAIアドバイザー。", price: "¥2,980/月〜", isNew: true, link: "https://shacho-aibo.pages.dev/" },
   { name: "ひとり社長の経営会議室", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「一人で決断するのが不安」という経営者へ。複数のAIが議論を交わし、多角的な視点から課題解決をサポートします。", price: "¥2,980/月〜", isNew: true, link: "https://hitori-syachokaigi.pages.dev/" },
@@ -560,6 +577,18 @@ const apps = [
   { name: "情報まもるくん", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "「情報漏洩対策、これで十分？」という不安に。機密情報の管理ルールをAIがチェックし、セキュリティリスクを低減します。", price: "¥2,980/月〜", isNew: true, link: "https://jyoho-mamoru.pages.dev/" },
   { name: "秘書みっけ", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "「事務作業に追われて本業に集中できない」という士業の方へ。スケジュール整理やメール対応をサポートするAI秘書ツール。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/hisho-mikke/" },
 
+  // 💰 税務・お金
+  { name: "売上みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「毎月の売上予測を立てるのが面倒」という経営者へ。入力は最小限。直感的に着地が見えるシミュレーションツール。", price: "¥2,980/月〜", isNew: true, link: "https://uriage-mikke.pages.dev/" },
+  { name: "節税ダッシュボード", cat: "tax", catLabel: "💰 税務・お金", desc: "「税金、もっと安くならないの？」という経営者へ。AIが節税ポイントを自動チェックし、手元に残るお金を最大化します。", price: "¥1,980/月〜", isNew: false, link: "https://spc-jp.github.io/setsuzei-board/" },
+  { name: "収入みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「今年のパート収入、壁を超えちゃう？」という不安に。数字を入れるだけで103万・130万の壁を簡単シミュレーション。", price: "¥980/月〜", isNew: true, link: "https://spc-jp.github.io/syunyu-mikke/" },
+  { name: "資金繰りシミュレーター", cat: "tax", catLabel: "💰 税務・お金", desc: "「月末の支払いは足りるか？」という不安を解消。AIが月次の資金繰りをシミュレーションし、黒字倒産を未然に防ぎます。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/shikin-simulator/" },
+  { name: "試算みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「試算表の数字が読めない」という経営者へ。データを入力するだけでAIが経営状態を分かりやすく診断・解説します。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/shisan-mikke/" },
+  { name: "申告みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「申告準備、何から手をつければ…」という方へ。AIが確定申告・法人税申告の準備をサポートし、抜け漏れを防止します。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/shinkoku-mikke/" },
+  { name: "節税みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「自社に合った節税策が分からない」という経営者へ。業種や状況に応じた具体的な節税アドバイスをAIが提案します。", price: "¥2,980/月〜", isNew: false, link: "https://setsuzei-mikke.pages.dev/" },
+  { name: "お金みっけPro", cat: "tax", catLabel: "💰 税務・お金", desc: "「自社の財務状況をプロ目線で分析してほしい」という経営者へ。詳細な財務分析と具体的な改善アドバイスを提供します。", price: "¥2,980/月〜", isNew: false, link: "https://okane-mikke-pro.pages.dev/" },
+  { name: "遺言みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「遺言書、何から始めれば…」という方へ。12の質問に答えるだけで必要な準備がわかり、自筆証書遺言の下書きと相続税試算まで作成できます。", price: "¥2,980/月〜", isNew: true, link: "https://yuigon-mikke.pages.dev/" },
+  { name: "相続みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「相続の手続き、何から手をつければ…」という方へ。財産の種類を選ぶだけで、やることと期限を一覧化。AIが疑問にやさしく答えます。", price: "¥2,980/月〜", isNew: true, link: "https://sozoku-mikke.pages.dev/" },
+
   // 👥 採用・HR
   { name: "採用みっけ", cat: "hr", catLabel: "👥 採用・HR", desc: "「求人を出しても応募が来ない」という企業へ。求職者の心に響く、魅力的な求人票や会社説明文をAIが自動生成します。", price: "¥1,980/月〜", isNew: false, link: "https://spc-jp.github.io/saiyou-mikke/" },
   { name: "採用みっけ（業種特化版）", cat: "hr", catLabel: "👥 採用・HR", desc: "「業界特有の魅力が伝わらない」という企業へ。飲食・製造・介護など、業種に特化した最適な採用コンテンツを生成。", price: "¥2,980/月〜", isNew: false, link: "https://saiyou-mikke.pages.dev/" },
@@ -580,6 +609,7 @@ const apps = [
   { name: "モノみっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "「商品の良さが伝わらず売れない」という方へ。商品の裏にあるストーリーをAIが抽出し、購買意欲を高めるコピーを作成。", price: "¥4,980/月〜", isNew: true, link: "https://mono-mikke.pages.dev/" },
 
   // 🌿 ツール・生活
+  { name: "保険みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "「リスクの伝え方に悩む」という士業・代理店の方へ。属性と業種を選ぶだけで6つのリスクを可視化し、商談トーク例まで自動生成します。", price: "買取 ¥980", isNew: true, link: "https://hoken-mikke.pages.dev/" },
   { name: "たびみっけ Global", cat: "life", catLabel: "🌿 ツール・生活", desc: "「ここはどんな歴史がある場所？」という旅行中の疑問に。写真をアップするだけで、AIが歴史や文化を詳しく解説します。", price: "¥980/月〜", isNew: true, link: "https://tabi-mikke.pages.dev/" },
   { name: "占いみっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "「SNSのネタが尽きた…」という発信者へ。あなたのアカウントにぴったりの占いコンテンツをAIが提案し、エンゲージメントを高めます。", price: "¥2,980/月〜", isNew: false, link: "https://uranai-mikke.pages.dev/" },
   { name: "文字みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "「長時間の録音を聞き直す時間がない」という方へ。音声や動画の文字起こしから要約・整理までをAIが一瞬で完結させます。", price: "¥500/月〜", isNew: false, link: "https://moji-mikke.pages.dev/" },
@@ -593,6 +623,33 @@ const apps = [
   { name: "ゴルフ丨縦捻転マスター", cat: "life", catLabel: "🌿 ツール・生活", desc: "「飛距離アップと方向性を両立させたい」という方へ。難しい縦捻転スイングの習得をAIがサポートし、理想のショットへ導きます。", price: "¥2,980/月〜", isNew: true, link: "https://spc-jp.github.io/tate-nenten/" },
   { name: "整えるゴルフ プレミアムプラン", cat: "life", catLabel: "🌿 ツール・生活", desc: "「プレーを安定させたい」という方へ。「思考・感覚・スコア」を整える3種のアプリセット。練習やコースでの迷いをその場ですぐリセットします。", price: "¥1,350/月", isNew: true, link: "https://golf-apl-lp.pages.dev/" },
 ];
+
+function renderPopular() {
+  const grid = document.getElementById('popularGrid');
+  // ★ここにトップ3に表示したいアプリの名前を指定します
+  const topAppNames = ["社長の相棒", "売上みっけ", "ハンドメイドみっけ"];
+  
+  topAppNames.forEach((name, index) => {
+    const app = apps.find(a => a.name === name);
+    if (!app) return;
+    
+    const card = document.createElement('div');
+    card.className = 'popular-card';
+    card.innerHTML = `
+      <div class="rank-badge">No.${index + 1}</div>
+      <div class="card-top">
+        <div class="card-name">${app.name}</div>
+      </div>
+      <span class="badge-cat">${app.catLabel}</span>
+      <p class="card-desc">${app.desc}</p>
+      <div class="card-footer">
+        <div class="card-price"><strong>${app.price}</strong></div>
+        <a href="${app.link}" class="card-btn" target="_blank" rel="noopener">無料で試す →</a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
 
 function renderCards(list) {
   const grid = document.getElementById('cardsGrid');
@@ -621,7 +678,7 @@ function renderCards(list) {
       <span class="badge-cat">${app.catLabel}</span>
       <p class="card-desc">${app.desc}</p>
       <div class="card-footer">
-        <div class="card-price">月額 <strong>${app.price}</strong></div>
+        <div class="card-price"><strong>${app.price}</strong></div>
         <a href="${app.link}" class="card-btn" target="_blank" rel="noopener">無料で試す →</a>
       </div>
     `;
@@ -652,6 +709,7 @@ document.getElementById('searchInput').addEventListener('input', () => {
 });
 
 // Initial render
+renderPopular();
 renderCards(apps);
 </script>
 </body>
