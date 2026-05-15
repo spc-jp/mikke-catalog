@@ -297,30 +297,6 @@
     color: var(--text-light);
   }
 
-  /* 編集モード時のスタイル */
-  .edit-mode-active .card {
-    cursor: grab;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-  .edit-mode-active .card:active {
-    cursor: grabbing;
-  }
-  .edit-mode-active .card-btn {
-    pointer-events: none; /* 編集時はリンクをクリックできないようにする */
-    opacity: 0.5;
-  }
-  
-  /* ドラッグ中（長押し中）のカードスタイル */
-  .card.dragging {
-    opacity: 0.85;
-    transform: scale(0.95) !important;
-    box-shadow: 0 12px 32px rgba(34,54,112,0.3) !important;
-    border: 2px dashed var(--gold);
-    z-index: 100;
-    pointer-events: none; /* 下にある別のカードを検知するために必須 */
-  }
-
   /* SEARCH */
   .search-box {
     display: flex;
@@ -583,14 +559,6 @@
   <div class="catalog-header">
     <h2>みっけシリーズ 全作品一覧</h2>
     <p>カテゴリで絞り込み、キーワードで検索できます</p>
-    
-    <!-- 編集モードトグル -->
-    <div style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; align-items: center; flex-wrap: wrap;">
-      <label style="cursor: pointer; font-size: 13px; background: #e8f4ff; padding: 6px 16px; border-radius: 20px; color: var(--navy); font-weight: bold; border: 1px solid var(--navy); transition: all 0.2s;">
-        <input type="checkbox" id="editModeToggle" style="margin-right: 6px;">🛠 編集モード（並び替え）
-      </label>
-      <button id="copyCodeBtn" style="display: none; font-size: 13px; font-weight: bold; padding: 7px 16px; background: var(--gold); color: var(--navy-dark); border: none; border-radius: 20px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">📋 新しい並び順をコピー</button>
-    </div>
   </div>
 
   <div class="search-box">
@@ -627,8 +595,7 @@
 </footer>
 
 <script>
-// "apps" is declared with "let" so we can update it after drag and drop
-let apps = [
+const apps = [
   // 🏢 経営・戦略
   { name: "社長の相棒", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「誰に相談すればいいか分からない…」というひとり社長へ。24時間いつでも相談できる、あなたの右腕となるAIアドバイザー。", price: "¥2,980/月〜", isNew: true, link: "https://shacho-aibo.pages.dev/" },
   { name: "ひとり社長の経営会議室", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「一人で決断するのが不安」という経営者へ。複数のAIが議論を交わし、多角的な視点から課題解決をサポートします。", price: "¥2,980/月〜", isNew: true, link: "https://hitori-syachokaigi.pages.dev/" },
@@ -729,79 +696,6 @@ function renderPopular() {
   });
 }
 
-// ==== 独自の長押しドラッグ＆ドロップ用変数 ====
-let isDragging = false;
-let draggedCard = null;
-let pressTimer = null;
-let startX = 0, startY = 0;
-let dndInitialized = false;
-
-function initDragAndDrop() {
-  if (dndInitialized) return;
-  dndInitialized = true;
-  
-  const grid = document.getElementById('cardsGrid');
-
-  const handleMove = (e) => {
-    if (!document.getElementById('editModeToggle').checked) return;
-
-    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
-
-    // まだドラッグが始まっていない（長押し待機中）場合
-    if (!isDragging) {
-      if (pressTimer) {
-        // 指やマウスが大きく動いたら、単なるスクロールとみなして長押しをキャンセル
-        if (Math.abs(clientX - startX) > 10 || Math.abs(clientY - startY) > 10) {
-          clearTimeout(pressTimer);
-          pressTimer = null;
-        }
-      }
-      return;
-    }
-
-    // ドラッグ中の処理
-    e.preventDefault(); // 画面のスクロールを防止
-    
-    // カーソルの下にある要素を取得
-    const target = document.elementFromPoint(clientX, clientY);
-    if (!target) return;
-    
-    const targetCard = target.closest('.card');
-    if (targetCard && targetCard !== draggedCard && targetCard.parentNode === grid) {
-      // 要素の並び替え
-      const children = Array.from(grid.children);
-      const draggedIndex = children.indexOf(draggedCard);
-      const targetIndex = children.indexOf(targetCard);
-      
-      if (draggedIndex < targetIndex) {
-        grid.insertBefore(draggedCard, targetCard.nextSibling);
-      } else {
-        grid.insertBefore(draggedCard, targetCard);
-      }
-    }
-  };
-
-  const handleUp = () => {
-    clearTimeout(pressTimer);
-    pressTimer = null;
-    if (isDragging && draggedCard) {
-      draggedCard.classList.remove('dragging');
-      isDragging = false;
-      draggedCard = null;
-      document.body.style.overflow = ''; // スクロール固定を解除
-      updateAppsArray(); // 配列を新しい順番に更新
-    }
-  };
-
-  // 画面全体で動きと離す動作を検知する
-  document.addEventListener('mousemove', handleMove, {passive: false});
-  document.addEventListener('touchmove', handleMove, {passive: false});
-  document.addEventListener('mouseup', handleUp);
-  document.addEventListener('touchend', handleUp);
-  document.addEventListener('touchcancel', handleUp);
-}
-
 function renderCards(list) {
   const grid = document.getElementById('cardsGrid');
   const noResults = document.getElementById('noResults');
@@ -821,7 +715,6 @@ function renderCards(list) {
   list.forEach(app => {
     const card = document.createElement('div');
     card.className = 'card';
-    card.dataset.name = app.name; // 並び替え用に名前を保持
     card.innerHTML = `
       <div class="card-top">
         <div class="card-name">${app.name}</div>
@@ -834,42 +727,8 @@ function renderCards(list) {
         <a href="${app.link}" class="card-btn" target="_blank" rel="noopener">無料で試す →</a>
       </div>
     `;
-
-    // 長押しを検知してドラッグ状態にする
-    const startPress = (clientX, clientY) => {
-      if (!document.getElementById('editModeToggle').checked) return;
-      startX = clientX;
-      startY = clientY;
-      pressTimer = setTimeout(() => {
-        isDragging = true;
-        draggedCard = card;
-        card.classList.add('dragging');
-        document.body.style.overflow = 'hidden'; // スマホ等でのスクロール防止
-      }, 250); // 0.25秒の長押しで発動
-    };
-
-    // PC用
-    card.addEventListener('mousedown', (e) => startPress(e.clientX, e.clientY));
-    // スマホ用
-    card.addEventListener('touchstart', (e) => startPress(e.touches[0].clientX, e.touches[0].clientY), {passive: true});
-
     grid.appendChild(card);
   });
-}
-
-function updateAppsArray() {
-  const grid = document.getElementById('cardsGrid');
-  const currentCards = grid.querySelectorAll('.card');
-  const newApps = [];
-  currentCards.forEach(card => {
-    const name = card.dataset.name;
-    const app = apps.find(a => a.name === name);
-    if (app) newApps.push(app);
-  });
-  // 並び替えた配列で apps を上書き
-  if(newApps.length === apps.length) {
-    apps = newApps;
-  }
 }
 
 function getFiltered() {
@@ -887,14 +746,6 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    
-    // カテゴリ移動時は編集モードを強制OFFにする（バグ防止のため）
-    const editToggle = document.getElementById('editModeToggle');
-    if (editToggle.checked) {
-      editToggle.checked = false;
-      editToggle.dispatchEvent(new Event('change'));
-    }
-    
     renderCards(getFiltered());
   });
 });
@@ -903,64 +754,7 @@ document.getElementById('searchInput').addEventListener('input', () => {
   renderCards(getFiltered());
 });
 
-document.getElementById('editModeToggle').addEventListener('change', (e) => {
-  const isEdit = e.target.checked;
-  const copyBtn = document.getElementById('copyCodeBtn');
-  const catalogSection = document.querySelector('.catalog');
-
-  if (isEdit) {
-    // 編集モードは「すべて」タブ表示時のみ許可する
-    const activeTab = document.querySelector('.tab-btn.active').dataset.cat;
-    const keyword = document.getElementById('searchInput').value.trim();
-    if(activeTab !== 'all' || keyword !== '') {
-      alert('並び替えは「すべて」タブで、検索キーワードが空の時のみ利用できます。');
-      e.target.checked = false;
-      return;
-    }
-
-    catalogSection.classList.add('edit-mode-active');
-    copyBtn.style.display = 'inline-block';
-  } else {
-    catalogSection.classList.remove('edit-mode-active');
-    copyBtn.style.display = 'none';
-  }
-});
-
-// ===== 新しい並び順のコードをコピーする機能 =====
-document.getElementById('copyCodeBtn').addEventListener('click', () => {
-  let codeStr = "  // 【コピーした並び順データ】\n";
-  apps.forEach(app => {
-    codeStr += `  { name: "${app.name}", cat: "${app.cat}", catLabel: "${app.catLabel}", desc: "${app.desc}", price: "${app.price}", isNew: ${app.isNew}, link: "${app.link}" },\n`;
-  });
-  
-  // クリップボードにコピー
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(codeStr).then(() => {
-      alert("新しい並び順のコードをコピーしました！\nこれをAIに渡して更新を依頼するか、エディタに直接貼り付けてください。");
-    }).catch(err => {
-      fallbackCopy(codeStr);
-    });
-  } else {
-    fallbackCopy(codeStr);
-  }
-});
-
-function fallbackCopy(text) {
-  const textArea = document.createElement("textarea");
-  textArea.value = text;
-  document.body.appendChild(textArea);
-  textArea.select();
-  try {
-    document.execCommand('copy');
-    alert("新しい並び順のコードをコピーしました！\nこれをAIに渡して更新を依頼するか、エディタに直接貼り付けてください。");
-  } catch (err) {
-    alert("コピーに失敗しました。");
-  }
-  document.body.removeChild(textArea);
-}
-
 // Initial render
-initDragAndDrop();
 renderPopular();
 renderCards(apps);
 </script>
