@@ -276,6 +276,43 @@
   .popular-card .card-btn { background: var(--gold); color: var(--navy-dark); }
   .popular-card .card-btn:hover { background: var(--navy); color: var(--white); }
 
+  /* ===== EDITOR'S PICK ===== */
+  .editor-pick {
+    padding-top: 40px;
+  }
+  .editor-card {
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: var(--radius);
+    padding: 28px 20px 24px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(34,54,112,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.2s;
+  }
+  .editor-card:hover {
+    transform: translateY(-5px);
+  }
+  .theme-badge {
+    position: absolute;
+    top: -14px;
+    left: 16px;
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    white-space: nowrap;
+  }
+  .editor-card .card-name { font-size: 16px; }
+  .editor-card .card-desc { font-size: 13px; }
+  .editor-card .card-btn { background: var(--navy); color: var(--white); }
+  .editor-card .card-btn:hover { background: var(--gold); color: var(--navy-dark); }
+
   /* ===== CATALOG SECTION ===== */
   .catalog {
     padding: 40px 16px 60px;
@@ -554,6 +591,17 @@
   </div>
 </section>
 
+<!-- EDITOR'S PICK -->
+<section class="popular-section editor-pick">
+  <div class="popular-header">
+    <h2>✨ 編集部おすすめ3本</h2>
+    <p style="font-size: 13px; color: var(--text-light); margin-top: 8px;">時短・驚き・意外性。ハッとする3本を厳選しました</p>
+  </div>
+  <div class="popular-grid" id="editorPickGrid">
+    <!-- JSで自動生成されます -->
+  </div>
+</section>
+
 <!-- CATALOG -->
 <section class="catalog">
   <div class="catalog-header">
@@ -669,6 +717,7 @@ const apps = [
 ];
 
 function renderPopular() {
+  // ===== Top3 =====
   const grid = document.getElementById('popularGrid');
   const topAppNames = ["価値みっけ", "補助金マッチングナビ", "相続みっけ"];
   
@@ -693,6 +742,37 @@ function renderPopular() {
       </div>
     `;
     grid.appendChild(card);
+  });
+
+  // ===== Editor's Pick =====
+  const editorGrid = document.getElementById('editorPickGrid');
+  const editorPicks = [
+    { name: "文字みっけ",   themeLabel: "⏱ 時短部門",   themeColor: "#4A90E2" },
+    { name: "チラシみっけ", themeLabel: "✨ 驚き部門",   themeColor: "#E27D60" },
+    { name: "冷蔵庫みっけ", themeLabel: "💡 意外性部門", themeColor: "#41B883" }
+  ];
+  
+  editorGrid.innerHTML = '';
+  
+  editorPicks.forEach(pick => {
+    const app = apps.find(a => a.name === pick.name);
+    if (!app) return;
+    
+    const card = document.createElement('div');
+    card.className = 'editor-card';
+    card.innerHTML = `
+      <div class="theme-badge" style="background:${pick.themeColor}">${pick.themeLabel}</div>
+      <div class="card-top">
+        <div class="card-name">${app.name}</div>
+      </div>
+      <span class="badge-cat">${app.catLabel}</span>
+      <p class="card-desc">${app.desc}</p>
+      <div class="card-footer">
+        <div class="card-price"><strong>${app.price}</strong></div>
+        <a href="${app.link}" class="card-btn" target="_blank" rel="noopener">無料で試す →</a>
+      </div>
+    `;
+    editorGrid.appendChild(card);
   });
 }
 
