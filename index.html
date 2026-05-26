@@ -595,7 +595,7 @@
 <section class="popular-section editor-pick">
   <div class="popular-header">
     <h2>✨ 編集部おすすめ3本</h2>
-    <p style="font-size: 13px; color: var(--text-light); margin-top: 8px;">時短・驚き・意外性。ハッとする3本を厳選しました</p>
+    <p style="font-size: 13px; color: var(--text-light); margin-top: 8px;">整理・想い出・安心。大切な人のための3本を厳選しました</p>
   </div>
   <div class="popular-grid" id="editorPickGrid">
     <!-- JSで自動生成されます -->
@@ -672,10 +672,11 @@ const apps = [
   { name: "申告みっけ", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "「申告準備、何から手をつければ…」という方へ。AIが確定申告・法人税申告の準備をサポートし、抜け漏れを防止します。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/shinkoku-mikke/" },
   { name: "売上みっけ", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "「毎月の売上予測を立てるのが面倒」という経営者へ。入力は最小限。直感的に着地が見えるシミュレーションツール。", price: "¥2,980/月〜", isNew: true, link: "https://uriage-mikke.pages.dev/" },
   { name: "巡回みっけ", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "「巡回後の報告書作成で残業ばかり…」という方へ。巡回記録をAIが自動で整理・要約し、報告書作成の時間を大幅に削減。", price: "¥2,980/月〜", isNew: false, link: "https://jyunkai-mikke.pages.dev/" },
+  { name: "遺言書みっけ", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "「遺言書を作りたいけど何から？」という方へ。AIが状況をヒアリングし、自筆証書遺言の下書きまでサポートします。", price: "買取 ¥4,980", isNew: true, link: "https://yuigon-mikke.pages.dev/" },
+  { name: "デジタル遺品みっけ", cat: "legal", catLabel: "⚖️ 士業・法務", desc: "「親のスマホやSNS、どうしよう」という方へ。デジタル遺品の整理手順と注意点を、AIがやさしくガイドします。", price: "買取 ¥980", isNew: true, link: "https://digital-ihin-mikke.pages.dev/" },
 
   // 💰 税務・お金
-  { name: "遺言みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「遺言書、何から始めれば…」という方へ。12の質問に答えるだけで必要な準備がわかり、自筆証書遺言の下書きと相続税試算まで作成できます。", price: "¥2,980/月〜", isNew: true, link: "https://yuigon-mikke.pages.dev/" },
-  { name: "相続みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「相続の手続き、何から手をつければ…」という方へ。財産の種類を選ぶだけで、やることと期限を一覧化。AIが疑問にやさしく答えます。", price: "¥2,980/月〜", isNew: true, link: "https://sozoku-mikke.pages.dev/" },
+  { name: "相続みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「相続の手続き、何から手をつければ…」という方へ。財産の種類を選ぶだけで、やることと期限を一覧化。AIが疑問にやさしく答えます。", price: "買取 ¥9,800", isNew: true, link: "https://sozoku-mikke.pages.dev/" },
   { name: "節税ダッシュボード", cat: "tax", catLabel: "💰 税務・お金", desc: "「税金、もっと安くならないの？」という経営者へ。AIが節税ポイントを自動チェックし、手元に残るお金を最大化します。", price: "¥1,980/月〜", isNew: false, link: "https://spc-jp.github.io/setsuzei-board/" },
   { name: "収入みっけ", cat: "tax", catLabel: "💰 税務・お金", desc: "「今年のパート収入、壁を超えちゃう？」という不安に。数字を入れるだけで103万・130万の壁を簡単シミュレーション。", price: "¥980/月〜", isNew: true, link: "https://spc-jp.github.io/syunyu-mikke/" },
   { name: "資金繰りシミュレーター", cat: "tax", catLabel: "💰 税務・お金", desc: "「月末の支払いは足りるか？」という不安を解消。AIが月次の資金繰りをシミュレーションし、黒字倒産を未然に防ぎます。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/shikin-simulator/" },
@@ -703,6 +704,8 @@ const apps = [
   // 🌿 ツール・生活
   { name: "保険みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "「リスクの伝え方に悩む」という士業・代理店の方へ。属性と業種を選ぶだけで6つのリスクを可視化し、商談トーク例まで自動生成します。", price: "買取 ¥9,800", isNew: true, link: "https://hoken-mikke.pages.dev/" },
   { name: "たびみっけ Global", cat: "life", catLabel: "🌿 ツール・生活", desc: "「ここはどんな歴史がある場所？」という旅行中の疑問に。写真をアップするだけで、AIが歴史や文化を詳しく解説します。", price: "買取 ¥1,980", isNew: true, link: "https://tabi-mikke.pages.dev/" },
+  { name: "オモイデ・ショート", cat: "life", catLabel: "🌿 ツール・生活", desc: "「あの日の思い出を、形に残したい」という方へ。写真とエピソードを入れるだけで、心に響くショート動画が完成します。", price: "買取 ¥1,980", isNew: true, link: "https://omoide-short-videos.pages.dev/" },
+  { name: "ココロ・ショート", cat: "life", catLabel: "🌿 ツール・生活", desc: "「気持ちを動画で伝えたい」という方へ。短いメッセージとイメージから、心に届くショート動画をAIが自動で制作します。", price: "買取 ¥980", isNew: true, link: "https://kokoro-short-videos.pages.dev/" },
   { name: "占いみっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "「SNSのネタが尽きた…」という発信者へ。あなたのアカウントにぴったりの占いコンテンツをAIが提案し、エンゲージメントを高めます。", price: "¥2,980/月〜", isNew: false, link: "https://uranai-mikke.pages.dev/" },
   { name: "文字みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "「長時間の録音を聞き直す時間がない」という方へ。音声や動画の文字起こしから要約・整理までをAIが一瞬で完結させます。", price: "¥500/月〜", isNew: false, link: "https://moji-mikke.pages.dev/" },
   { name: "よみとりくん", cat: "life", catLabel: "🌿 ツール・生活", desc: "「手入力で文字を打ち直すのが面倒」という方へ。名刺や書類の画像を読み取るだけで、テキストデータとして即座に抽出します。", price: "¥980/月〜", isNew: false, link: "https://yomitorikun.pages.dev/" },
@@ -747,9 +750,9 @@ function renderPopular() {
   // ===== Editor's Pick =====
   const editorGrid = document.getElementById('editorPickGrid');
   const editorPicks = [
-    { name: "文字みっけ",   themeLabel: "⏱ 時短部門",   themeColor: "#4A90E2" },
-    { name: "チラシみっけ", themeLabel: "✨ 驚き部門",   themeColor: "#E27D60" },
-    { name: "冷蔵庫みっけ", themeLabel: "💡 意外性部門", themeColor: "#41B883" }
+    { name: "デジタル遺品みっけ", themeLabel: "🗂 整理部門",   themeColor: "#4A90E2" },
+    { name: "オモイデ・ショート", themeLabel: "📸 想い出部門", themeColor: "#E27D60" },
+    { name: "遺言書みっけ",       themeLabel: "✍️ 安心部門",   themeColor: "#41B883" }
   ];
   
   editorGrid.innerHTML = '';
