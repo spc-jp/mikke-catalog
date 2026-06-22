@@ -887,5 +887,45 @@ document.getElementById('searchInput').addEventListener('input', () => {
 renderPopular();
 renderCards(apps);
 </script>
+
+<!-- ===== トップへ戻るボタン ===== -->
+<button id="toTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="トップへ戻る"
+  style="
+    display:none;
+    position:fixed;
+    bottom:28px;
+    right:24px;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:#223670;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:900;
+    box-shadow:0 4px 16px rgba(34,54,112,0.35);
+    z-index:9999;
+    transition:background 0.2s, transform 0.2s;
+    line-height:1;
+  "
+  onmouseover="this.style.background='#00BFFF';this.style.transform='translateY(-2px)'"
+  onmouseout="this.style.background='#223670';this.style.transform='translateY(0)'">
+  ↑
+</button>
+<script>
+  const toTopBtn = document.getElementById('toTopBtn');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 300) {
+      toTopBtn.style.display = 'flex';
+      toTopBtn.style.alignItems = 'center';
+      toTopBtn.style.justifyContent = 'center';
+    } else {
+      toTopBtn.style.display = 'none';
+    }
+  });
+</script>
+<!-- ===== ここまで ===== -->
+
 </body>
 </html>
