@@ -693,6 +693,7 @@
 <script>
 const apps = [
   // 🏢 経営・戦略
+  { name: "ボイスみっけ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "スマホで録音するだけ。多言語対応で議事録・商談記録・対応メモを自動整理。日本語・英語・韓国語・中国語に対応。整理結果はそのままコピーしてLINEで共有できます。", price: "買取 ¥980", isNew: true, link: "https://voice-mikke.pages.dev/" },
   { name: "社長の相棒", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「誰に相談すればいいか分からない…」というひとり社長へ。24時間いつでも相談できる、あなたの右腕となるAIアドバイザー。", price: "¥2,980/月〜", isNew: true, link: "https://shacho-aibo.pages.dev/" },
   { name: "ひとり社長の経営会議室", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「一人で決断するのが不安」という経営者へ。複数のAIが議論を交わし、多角的な視点から課題解決をサポートします。", price: "¥2,980/月〜", isNew: true, link: "https://hitori-syachokaigi.pages.dev/" },
   { name: "ひとり社長の参謀室", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「目の前の業務で手一杯…」という経営者へ。戦略、マーケティング、人事を俯瞰し、経営の全体設計を支援するAI参謀。", price: "¥2,980/月〜", isNew: false, link: "https://hitori-shacho.pages.dev/" },
@@ -768,7 +769,7 @@ const apps = [
 function renderPopular() {
   // ===== Top3 =====
   const grid = document.getElementById('popularGrid');
-  const topAppNames = ["価値みっけ", "補助金マッチングナビ", "相続みっけ"];
+  const topAppNames = ["ボイスみっけ", "価値みっけ", "補助金マッチングナビ"];
   
   grid.innerHTML = '';
   
