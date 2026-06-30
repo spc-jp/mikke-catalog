@@ -645,8 +645,8 @@
 <!-- EDITOR'S PICK -->
 <section class="popular-section editor-pick">
   <div class="popular-header">
-    <h2>🌿 今月のテーマ「家族」</h2>
-    <p style="font-size: 13px; color: var(--text-light); margin-top: 8px;">6月は終活と思い出に寄り添う3本をお届けします</p>
+    <h2>🏥 今月のテーマ「会社と人の健康」</h2>
+    <p style="font-size: 13px; color: var(--text-light); margin-top: 8px;">7月は「会社と人の健康」を見直す3本をお届けします</p>
   </div>
   <div class="popular-grid" id="editorPickGrid">
     <!-- JSで自動生成されます -->
@@ -702,6 +702,7 @@ const apps = [
   { name: "社長の相棒", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「誰に相談すればいいか分からない…」というひとり社長へ。24時間いつでも相談できる、あなたの右腕となるAIアドバイザー。", price: "¥2,980/月〜", isNew: true, link: "https://shacho-aibo.pages.dev/" },
   { name: "ひとり社長の経営会議室", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「一人で決断するのが不安」という経営者へ。複数のAIが議論を交わし、多角的な視点から課題解決をサポートします。", price: "¥2,980/月〜", isNew: true, link: "https://hitori-syachokaigi.pages.dev/" },
   { name: "ひとり社長の参謀室", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「目の前の業務で手一杯…」という経営者へ。戦略、マーケティング、人事を俯瞰し、経営の全体設計を支援するAI参謀。", price: "¥2,980/月〜", isNew: false, link: "https://hitori-shacho.pages.dev/" },
+  { name: "経営みっけ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「うちの会社、今のままで大丈夫？」という不安に。簡単な質問に答えるだけで、会社の健康状態と改善ポイントをAIが診断します。", price: "¥2,980/月〜", isNew: true, link: "https://keiei-shindan.pages.dev/" },
   { name: "経営健康診断アプリ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「うちの会社、今のままで大丈夫？」という不安に。簡単な質問に答えるだけで、会社の健康状態と改善ポイントをAIが診断。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/keiei-shindan/" },
   { name: "補助金マッチングナビ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「使える補助金を探すのが面倒」という経営者へ。自社に最適な補助金をAIが瞬時に見つけ出し、申請準備までサポート。", price: "¥2,980/月〜", isNew: false, link: "https://hojyokin-navi.pages.dev/" },
   { name: "潜在ニーズレーダー", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「顧客の本当の悩みが分からない」という方へ。顧客の声をAIが分析し、言葉の裏に隠れた潜在ニーズを発掘します。", price: "¥1,980/月〜", isNew: false, link: "https://spc-jp.github.io/senzai-needs/" },
@@ -803,9 +804,9 @@ function renderPopular() {
   // ===== Editor's Pick =====
   const editorGrid = document.getElementById('editorPickGrid');
   const editorPicks = [
-    { name: "デジタル遺品みっけ", themeLabel: "🗂 整理部門",   themeColor: "#4A90E2" },
-    { name: "オモイデ・ショート", themeLabel: "📸 想い出部門", themeColor: "#E27D60" },
-    { name: "遺言書みっけ",       themeLabel: "✍️ 安心部門",   themeColor: "#41B883" }
+    { name: "血圧みっけ",   themeLabel: "❤️ 血圧部門",   themeColor: "#E05555" },
+    { name: "血糖値みっけ", themeLabel: "🩺 血糖値部門", themeColor: "#1A7FA8" },
+    { name: "経営みっけ",   themeLabel: "🏢 経営部門",   themeColor: "#41B883" }
   ];
   
   editorGrid.innerHTML = '';
