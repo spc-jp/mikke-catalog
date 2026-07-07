@@ -914,20 +914,20 @@ renderCards(apps);
       width:44px;
       height:44px;
       border-radius:50%;
-      background:#1A7FA8;
-      color:#FFE066;
+      background:#FFE066;
+      color:#0D3D52;
       border:none;
       cursor:pointer;
       font-size:18px;
       font-weight:900;
-      box-shadow:0 4px 16px rgba(26,127,168,0.35);
+      box-shadow:0 4px 16px rgba(255,224,102,0.45);
       transition:background 0.2s, transform 0.2s;
       align-items:center;
       justify-content:center;
       line-height:1;
     "
-    onmouseover="this.style.background='#00BFFF';this.style.transform='translateY(-2px)'"
-    onmouseout="this.style.background='#1A7FA8';this.style.transform='translateY(0)'">
+    onmouseover="this.style.background='#FFD700';this.style.transform='translateY(-2px)'"
+    onmouseout="this.style.background='#FFE066';this.style.transform='translateY(0)'">
     ↑
   </button>
 
@@ -965,7 +965,8 @@ renderCards(apps);
   window.addEventListener('scroll', function() {
     if (window.scrollY > 300) {
       toTopBtn.style.display = 'flex';
-      toTopBtn.style.color = '#FFE066';
+      toTopBtn.style.background = '#FFE066';
+      toTopBtn.style.color = '#0D3D52';
     } else {
       toTopBtn.style.display = 'none';
     }
