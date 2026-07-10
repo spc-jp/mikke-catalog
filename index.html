@@ -607,6 +607,92 @@
   </div>
 </div>
 
+<!-- ANCHOR NAV -->
+<nav id="anchorNav" style="
+  background:#0D3D52;
+  position:sticky;
+  top:0;
+  z-index:888;
+  box-shadow:0 2px 8px rgba(13,61,82,0.20);
+">
+  <div style="
+    max-width:860px;
+    margin:0 auto;
+    display:flex;
+    justify-content:center;
+    gap:0;
+    overflow-x:auto;
+    scrollbar-width:none;
+  ">
+    <a href="#cases" style="
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:14px 20px;
+      color:#EBF7FC;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+      border-bottom:3px solid transparent;
+      transition:color 0.2s, border-color 0.2s;
+    "
+    onmouseover="this.style.color='#FFE066';this.style.borderBottomColor='#FFE066'"
+    onmouseout="this.style.color='#EBF7FC';this.style.borderBottomColor='transparent'">
+      📣 活用事例
+    </a>
+    <a href="#security" style="
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:14px 20px;
+      color:#EBF7FC;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+      border-bottom:3px solid transparent;
+      transition:color 0.2s, border-color 0.2s;
+    "
+    onmouseover="this.style.color='#FFE066';this.style.borderBottomColor='#FFE066'"
+    onmouseout="this.style.color='#EBF7FC';this.style.borderBottomColor='transparent'">
+      🔐 安心・安全
+    </a>
+    <a href="#faq" style="
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:14px 20px;
+      color:#EBF7FC;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+      border-bottom:3px solid transparent;
+      transition:color 0.2s, border-color 0.2s;
+    "
+    onmouseover="this.style.color='#FFE066';this.style.borderBottomColor='#FFE066'"
+    onmouseout="this.style.color='#EBF7FC';this.style.borderBottomColor='transparent'">
+      💬 よくある質問
+    </a>
+  </div>
+</nav>
+<script>
+  // スムーズスクロール
+  document.querySelectorAll('#anchorNav a').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        const offset = 56;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
 <!-- HOW TO USE -->
 <section class="howto">
   <h2>▷ ご利用の流れ</h2>
@@ -654,7 +740,7 @@
 </section>
 
 <!-- CASES -->
-<section style="background:#EBF7FC; padding:48px 20px 40px;">
+<section id="cases" style="background:#EBF7FC; padding:48px 20px 40px;">
   <div style="max-width:860px; margin:0 auto;">
 
     <div style="text-align:center; margin-bottom:32px;">
@@ -785,11 +871,11 @@
 </section>
 
 <!-- SECURITY & FAQ -->
-<section style="background:#fff; padding:48px 20px 40px; border-top:1px solid rgba(26,127,168,0.1);">
+<section id="faq" style="background:#fff; padding:48px 20px 40px; border-top:1px solid rgba(26,127,168,0.1);">
   <div style="max-width:860px; margin:0 auto;">
 
     <!-- セキュリティバッジ -->
-    <div style="text-align:center; margin-bottom:40px;">
+    <div id="security" style="text-align:center; margin-bottom:40px;">
       <div style="display:inline-block; background:#EBF7FC; border-radius:12px; padding:6px 18px; font-size:11px; font-weight:700; color:#1A7FA8; letter-spacing:0.08em; margin-bottom:16px;">🔐 安心・安全への取り組み</div>
       <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:8px;">
         <div style="background:#EBF7FC; border-radius:12px; padding:16px 20px; text-align:center; min-width:160px; flex:1; max-width:200px;">
