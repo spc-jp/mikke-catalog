@@ -624,6 +624,23 @@
     overflow-x:auto;
     scrollbar-width:none;
   ">
+    <a href="#catalog" style="
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:14px 20px;
+      color:#FFE066;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+      border-bottom:3px solid #FFE066;
+      transition:color 0.2s, border-color 0.2s;
+    "
+    onmouseover="this.style.color='#FFE066';this.style.borderBottomColor='#FFE066'"
+    onmouseout="this.style.color='#FFE066';this.style.borderBottomColor='#FFE066'">
+      📱 アプリ一覧
+    </a>
     <a href="#cases" style="
       display:flex;
       align-items:center;
@@ -969,7 +986,7 @@
 </section>
 
 <!-- CATALOG -->
-<section class="catalog">
+<section id="catalog" class="catalog">
   <div class="catalog-header">
     <h2>みっけシリーズ 全作品一覧</h2>
     <p>カテゴリで絞り込み、キーワードで検索できます</p>
