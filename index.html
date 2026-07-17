@@ -645,15 +645,15 @@
   <p>「考えるを、ひとりにしない」<br>中小企業の現場で生まれた、すぐ使えるAIアプリ集</p>
   <div class="hero-stats">
     <div class="hero-stat">
-      <span class="num">60<small style="font-size:16px">+</small></span>
+      <span class="num"><span id="count-apps">0</span><small style="font-size:16px">+</small></span>
       <span class="label">アプリ数</span>
     </div>
     <div class="hero-stat">
-      <span class="num">30<small style="font-size:16px">年</small></span>
+      <span class="num"><span id="count-years">0</span><small style="font-size:16px">年</small></span>
       <span class="label">中小企業支援の経験</span>
     </div>
     <div class="hero-stat">
-      <span class="num">3<small style="font-size:16px">回</small></span>
+      <span class="num"><span id="count-trial">0</span><small style="font-size:16px">回</small></span>
       <span class="label">無料でお試し可能</span>
     </div>
   </div>
@@ -1308,6 +1308,51 @@ document.getElementById('searchInput').addEventListener('input', () => {
 renderPopular();
 renderCards(apps);
 </script>
+
+<!-- ===== カウントアップアニメーション ===== -->
+<script>
+function countUp(elementId, target, duration) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  const start = 0;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // イージング：最初は速く・最後はゆっくり止まる
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(eased * (target - start) + start);
+    el.textContent = current;
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = target;
+    }
+  }
+  requestAnimationFrame(update);
+}
+
+// 画面に入ったタイミングで発動
+const statsSection = document.querySelector('.hero-stats');
+let counted = false;
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !counted) {
+      counted = true;
+      countUp('count-apps', 60, 1500);
+      countUp('count-years', 30, 1500);
+      countUp('count-trial', 3, 1000);
+    }
+  });
+}, { threshold: 0.5 });
+
+if (statsSection) {
+  observer.observe(statsSection);
+}
+</script>
+<!-- ===== ここまで ===== -->
 
 <!-- ===== 右下フローティングボタン ===== -->
 <div id="floatingBtns" style="
