@@ -1421,6 +1421,82 @@ renderPopular();
 renderCards(apps);
 </script>
 
+<!-- ===== 時間帯連動ヒーロー背景 ===== -->
+<script>
+(function() {
+  const hour = new Date().getHours();
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  let bg, textColor, subColor, decorColor;
+
+  if (hour >= 5 && hour < 11) {
+    // 朝（5〜11時）清々しい水色の朝空
+    bg = 'linear-gradient(160deg, #7DD4ED 0%, #B8E8F5 50%, #E8F7FC 100%)';
+    textColor = '#0D3D52';
+    subColor = '#1A7FA8';
+    decorColor = 'rgba(14,157,197,0.15)';
+
+  } else if (hour >= 11 && hour < 17) {
+    // 昼（11〜17時）真夏の青空
+    bg = 'linear-gradient(160deg, #29B6F6 0%, #5BC8F5 40%, #B3E5FC 100%)';
+    textColor = '#0D3D52';
+    subColor = '#0277BD';
+    decorColor = 'rgba(2,119,189,0.15)';
+
+  } else if (hour >= 17 && hour < 22) {
+    // 夕方（17〜22時）夕焼けグラデーション
+    bg = 'linear-gradient(160deg, #F4845F 0%, #F4A261 40%, #FFDDD2 100%)';
+    textColor = '#4A1942';
+    subColor = '#C1440E';
+    decorColor = 'rgba(196,67,14,0.15)';
+
+  } else {
+    // 夜（22〜5時）夜空のネイビー
+    bg = 'linear-gradient(160deg, #0D1B2A 0%, #1B3A5C 50%, #274472 100%)';
+    textColor = '#E8F4FD';
+    subColor = '#7DD4ED';
+    decorColor = 'rgba(125,212,237,0.15)';
+  }
+
+  // 背景色を適用
+  hero.style.background = bg;
+  hero.style.color = textColor;
+
+  // h1・pの文字色を変更
+  const h1 = hero.querySelector('h1');
+  const h1span = hero.querySelector('h1 span');
+  const p = hero.querySelector('p');
+  const labels = hero.querySelectorAll('.hero-stat .label');
+  const badge = hero.querySelector('.hero-badge');
+
+  if (h1) h1.style.color = textColor;
+  if (h1span) h1span.style.color = subColor;
+  if (p) p.style.color = textColor;
+  if (badge) {
+    badge.style.color = hour >= 22 || hour < 5 ? '#0D3D52' : '';
+  }
+  labels.forEach(l => l.style.color = textColor);
+
+  // 装飾円の色を変更
+  const style = document.createElement('style');
+  style.textContent = `
+    .hero::before { background: ${decorColor} !important; }
+    .hero::after { background: ${decorColor.replace('0.15', '0.10')} !important; }
+  `;
+  document.head.appendChild(style);
+
+  // 夜・夕方はカウントアップ数字色も調整
+  const nums = hero.querySelectorAll('.hero-stat .num');
+  nums.forEach(n => {
+    if (hour >= 17 && hour < 22) n.style.color = '#C1440E';
+    else if (hour >= 22 || hour < 5) n.style.color = '#7DD4ED';
+    else n.style.color = subColor;
+  });
+})();
+</script>
+<!-- ===== ここまで ===== -->
+
 <!-- ===== カウントアップアニメーション ===== -->
 <script>
 function countUp(elementId, target, duration) {
