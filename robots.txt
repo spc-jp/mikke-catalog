@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://spc-jp.github.io/mikke-catalog/sitemap.xml
+Sitemap: https://mikke-catalog.pages.dev/sitemap.xml
