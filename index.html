@@ -856,6 +856,23 @@
     onmouseout="this.style.color='#FFE066';this.style.borderBottomColor='#FFE066'">
       📱 アプリ一覧
     </a>
+    <a href="#theme" style="
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:14px 20px;
+      color:#EBF7FC;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+      border-bottom:3px solid transparent;
+      transition:color 0.2s, border-color 0.2s;
+    "
+    onmouseover="this.style.color='#FFE066';this.style.borderBottomColor='#FFE066'"
+    onmouseout="this.style.color='#EBF7FC';this.style.borderBottomColor='transparent'">
+      📅 今月のテーマ
+    </a>
     <a href="#cases" style="
       display:flex;
       align-items:center;
@@ -978,10 +995,10 @@
 </section>
 
 <!-- EDITOR'S PICK -->
-<section class="popular-section editor-pick">
+<section id="theme" class="popular-section editor-pick">
   <div class="popular-header">
-    <h2>🏥 今月のテーマ「会社と人の健康」</h2>
-    <p style="font-size: 13px; color: var(--text-light); margin-top: 8px;">7月は「会社と人の健康」を見直す3本をお届けします</p>
+    <h2>👤 今月のテーマ「AI時代だからこそ、顔が見える」</h2>
+    <p style="font-size: 13px; color: var(--text-light); margin-top: 8px;">8月は「AI時代だからこそ、顔が見える」3本をお届けします</p>
   </div>
   <div class="popular-grid" id="editorPickGrid">
     <!-- JSで自動生成されます -->
@@ -1398,7 +1415,10 @@ const apps = [
   { name: "社長の相棒", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「誰に相談すればいいか分からない…」というひとり社長へ。24時間いつでも相談できる、あなたの右腕となるAIアドバイザー。", price: "¥2,980/月〜", isNew: true, link: "https://shacho-aibo.pages.dev/" },
   { name: "ひとり社長の経営会議室", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「一人で決断するのが不安」という経営者へ。複数のAIが議論を交わし、多角的な視点から課題解決をサポートします。", price: "¥2,980/月〜", isNew: true, link: "https://hitori-syachokaigi.pages.dev/" },
   { name: "ひとり社長の参謀室", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「目の前の業務で手一杯…」という経営者へ。戦略、マーケティング、人事を俯瞰し、経営の全体設計を支援するAI参謀。", price: "¥2,980/月〜", isNew: false, link: "https://hitori-shacho.pages.dev/" },
-  { name: "経営みっけ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「うちの会社、大丈夫？」という不安に。簡単な質問に答えるだけでAIが会社の健康状態と優先すべき改善ポイントを診断します。", price: "¥2,980/月〜", isNew: true, link: "https://keiei-shindan.pages.dev/" },
+  { name: "タックスナイト・アーセナル", cat: "biz", catLabel: "🏢 経営・戦略", desc: "税理士事務所に特化したWEBサイト構築・運用支援。専門サイト制作からWordPress導入、保守・更新代行、AI活用までワンストップでサポートします。", price: "カスタマイズ版", isNew: true, link: "https://tk-arsenal.jp/" },
+  { name: "顔の見えるシリーズ（製造業版）", cat: "biz", catLabel: "🏢 経営・戦略", desc: "社長の水彩似顔絵をしたAIが、初めての問い合わせを出迎える窓口です。7つの入口から二往復の会話で気持ちをほぐし、見積り相談と電話へ自然につなぎます。", price: "カスタマイズ版", isNew: true, link: "https://spc-jp.github.io/kaonomieru-series-seizougyo/" },
+  { name: "採用みっけfor職人版", cat: "biz", catLabel: "🏢 経営・戦略", desc: "現場写真1枚と社長のひとことで、求人票・SNS投稿・LINE配信文が3分で自動生成される採用特化AIツールです。", price: "買取 ¥2,980", isNew: true, link: "https://saiyou-mikke-shokunin.pages.dev/" },
+  { name: "経営みっけ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「うちの会社、大丈夫？」という不安に。簡単な質問に答えるだけでAIが会社の健康状態と優先すべき改善ポイントを診断します。", price: "¥2,980/月〜", isNew: false, link: "https://keiei-shindan.pages.dev/" },
   { name: "補助金マッチングナビ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「補助金を探すのが面倒」という経営者へ。自社に最適な補助金をAIが瞬時に見つけ申請準備までサポート。カスタマイズ案件多数！", price: "¥2,980/月〜", isNew: false, link: "https://hojyokin-navi.pages.dev/" },
   { name: "潜在ニーズレーダー", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「顧客の本当の悩みが分からない」という方へ。顧客の声をAIが分析し、言葉の裏に隠れた潜在ニーズを発掘します。", price: "¥1,980/月〜", isNew: false, link: "https://spc-jp.github.io/senzai-needs/" },
   { name: "信みっけ", cat: "biz", catLabel: "🏢 経営・戦略", desc: "「実績はあるのに信頼に繋がっていない」という方へ。顧客の信頼を獲得するための実績や事例を整理し、強みを可視化。", price: "¥2,980/月〜", isNew: false, link: "https://spc-jp.github.io/shin-mikke/" },
@@ -1449,8 +1469,8 @@ const apps = [
   { name: "モノみっけ", cat: "industry", catLabel: "🏪 業種特化", desc: "「商品の良さが伝わらず売れない」という方へ。商品の裏にあるストーリーをAIが抽出し、購買意欲を高めるコピーを作成。", price: "¥4,980/月〜", isNew: true, link: "https://mono-mikke.pages.dev/" },
 
   // 🌿 ツール・生活
-  { name: "血圧みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "健診の血圧数値を入力するだけ。今の状態と今週のアクションプランを30秒でわかりやすく解説。登録不要ですぐ使えます。", price: "買取 ¥500", isNew: true, link: "https://ketsuatu-mikke.pages.dev/" },
-  { name: "血糖値みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "健診の血糖値を入力するだけ。今の状態が4段階でわかりあなた専用の改善アドバイスが届きます。登録不要・無料・30秒で完了。", price: "買取 ¥500", isNew: true, link: "https://keltutouti-mikke.pages.dev/" },
+  { name: "血圧みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "健診の血圧数値を入力するだけ。今の状態と今週のアクションプランを30秒でわかりやすく解説。登録不要ですぐ使えます。", price: "買取 ¥500", isNew: false, link: "https://ketsuatu-mikke.pages.dev/" },
+  { name: "血糖値みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "健診の血糖値を入力するだけ。今の状態が4段階でわかりあなた専用の改善アドバイスが届きます。登録不要・無料・30秒で完了。", price: "買取 ¥500", isNew: false, link: "https://keltutouti-mikke.pages.dev/" },
   { name: "保険みっけ", cat: "life", catLabel: "🌿 ツール・生活", desc: "「リスクの伝え方に悩む」という士業・代理店の方へ。属性と業種を選ぶだけで6つのリスクを可視化し、商談トーク例まで自動生成します。", price: "買取 ¥9,800", isNew: true, link: "https://hoken-mikke.pages.dev/" },
   { name: "たびみっけ Global", cat: "life", catLabel: "🌿 ツール・生活", desc: "「ここはどんな歴史がある場所？」という旅行中の疑問に。写真をアップするだけで、AIが歴史や文化を詳しく解説します。", price: "買取 ¥1,980", isNew: true, link: "https://tabi-mikke.pages.dev/" },
   { name: "オモイデ・ショート", cat: "life", catLabel: "🌿 ツール・生活", desc: "「あの日の思い出を、形に残したい」という方へ。写真とエピソードを入れるだけで、心に響くショート動画が完成します。", price: "買取 ¥1,980", isNew: true, link: "https://omoide-short-videos.pages.dev/" },
@@ -1499,9 +1519,9 @@ function renderPopular() {
   // ===== Editor's Pick =====
   const editorGrid = document.getElementById('editorPickGrid');
   const editorPicks = [
-    { name: "血圧みっけ",   themeLabel: "❤️ 血圧部門",   themeColor: "#E05555" },
-    { name: "血糖値みっけ", themeLabel: "🩺 血糖値部門", themeColor: "#1A7FA8" },
-    { name: "経営みっけ",   themeLabel: "🏢 経営部門",   themeColor: "#41B883" }
+    { name: "タックスナイト・アーセナル",   themeLabel: "🏛️ 士業部門",   themeColor: "#1A7FA8" },
+    { name: "顔の見えるシリーズ（製造業版）", themeLabel: "🏭 製造業部門", themeColor: "#E05555" },
+    { name: "採用みっけfor職人版",           themeLabel: "👷 採用部門",   themeColor: "#41B883" }
   ];
   
   editorGrid.innerHTML = '';
